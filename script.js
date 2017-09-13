@@ -3,7 +3,7 @@ var board,
 
 /*The "AI" part starts here */
 
-var minimaxRoot =function(depth, game, isMaximisingPlayer) {
+var minimaxRoot = function (depth, game, isMaximisingPlayer) {
 
     var newGameMoves = game.ugly_moves();
     var bestMove = -9999;
@@ -23,7 +23,6 @@ var minimaxRoot =function(depth, game, isMaximisingPlayer) {
 };
 
 var minimax = function (depth, game, alpha, beta, isMaximisingPlayer) {
-    positionCount++;
     if (depth === 0) {
         return -evaluateBoard(game.board());
     }
@@ -67,7 +66,7 @@ var evaluateBoard = function (board) {
     return totalEvaluation;
 };
 
-var reverseArray = function(array) {
+var reverseArray = function (array) {
     return array.slice().reverse();
 };
 
@@ -196,25 +195,13 @@ var makeBestMove = function () {
     }
 };
 
-
-var positionCount;
 var getBestMove = function (game) {
     if (game.game_over()) {
         alert('Game over');
     }
 
-    positionCount = 0;
-    var depth = parseInt($('#search-depth').find(':selected').text());
-
-    var d = new Date().getTime();
     var bestMove = minimaxRoot(depth, game, true);
-    var d2 = new Date().getTime();
-    var moveTime = (d2 - d);
-    var positionsPerS = ( positionCount * 1000 / moveTime);
 
-    $('#position-count').text(positionCount);
-    $('#time').text(moveTime/1000 + 's');
-    $('#positions-per-s').text(positionsPerS);
     return bestMove;
 };
 
@@ -249,7 +236,7 @@ var onSnapEnd = function () {
     board.position(game.fen());
 };
 
-var onMouseoverSquare = function(square, piece) {
+var onMouseoverSquare = function (square, piece) {
     var moves = game.moves({
         square: square,
         verbose: true
@@ -264,15 +251,15 @@ var onMouseoverSquare = function(square, piece) {
     }
 };
 
-var onMouseoutSquare = function(square, piece) {
+var onMouseoutSquare = function (square, piece) {
     removeGreySquares();
 };
 
-var removeGreySquares = function() {
+var removeGreySquares = function () {
     $('#board .square-55d63').css('background', '');
 };
 
-var greySquare = function(square) {
+var greySquare = function (square) {
     var squareEl = $('#board .square-' + square);
 
     var background = '#a9a9a9';
@@ -292,4 +279,5 @@ var cfg = {
     onMouseoverSquare: onMouseoverSquare,
     onSnapEnd: onSnapEnd
 };
+
 board = ChessBoard('board', cfg);

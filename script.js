@@ -1,6 +1,6 @@
 var board,
     game = new Chess();
-
+var PROGRAM_DEPTH = 3;
 /*The "AI" part starts here */
 
 var minimaxRoot = function (depth, game, isMaximisingPlayer) {
@@ -200,7 +200,7 @@ var getBestMove = function (game) {
         alert('Game over');
     }
 
-    var bestMove = minimaxRoot(depth, game, true);
+    var bestMove = minimaxRoot(PROGRAM_DEPTH, game, true);
 
     return bestMove;
 };

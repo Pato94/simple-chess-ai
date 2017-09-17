@@ -14,7 +14,7 @@ values = [".", "p", "r", "n", "b", "q", "k", "P", "R", "N", "B", "Q", "K"]
 
 pgns = glob.glob("games/*")
 
-engine = chess.uci.popen_engine("stockfish/stockfish-8-64")
+engine = chess.uci.popen_engine("stockfish/stockfish_8_x64")
 for file in pgns:
     with open(file) as pgn:
         game = chess.pgn.read_game(pgn)
